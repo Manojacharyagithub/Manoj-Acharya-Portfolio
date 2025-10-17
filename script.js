@@ -47,21 +47,30 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // EmailJS Contact Form
-  document.getElementById("contactForm").addEventListener("submit", function (e) {
-    e.preventDefault();
-    const status = document.getElementById("formStatus");
+// Contact form EmailJS integration
+document.getElementById("contactForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+  const status = document.getElementById("formStatus");
+  const sendBtn = document.getElementById("sendBtn");
 
-    emailjs.sendForm('service_w3vzucw', 'DvDwcfbIRsi3FQfEW', this)
-      .then(() => {
-        status.textContent = "✅ Message sent successfully!";
-        status.style.color = "lightgreen";
-        this.reset();
-      }, (error) => {
-        status.textContent = "❌ Failed to send message. Try again later.";
-        status.style.color = "red";
-        console.error("EmailJS Error:", error);
-      });
-  });
+  sendBtn.disabled = true;
+  sendBtn.textContent = "Sending...";
+
+  emailjs.send("service_w3vzucw","template_1quqqr9");
+    .then(() => {
+      status.textContent = "✅ Message sent successfully!";
+      status.style.color = "green";
+      this.reset();
+      sendBtn.disabled = false;
+      sendBtn.textContent = "Send Message";
+    }, (error) => {
+      status.textContent = "❌ Failed to send message. Please try again.";
+      status.style.color = "red";
+      sendBtn.disabled = false;
+      sendBtn.textContent = "Send Message";
+      console.error("EmailJS Error:", error);
+    });
 });
+
+
 
