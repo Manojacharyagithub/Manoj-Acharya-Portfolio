@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
     const status = document.getElementById("formStatus");
 
-    emailjs.sendForm('manojhnacharya8@gmail.com', 'YOUR_TEMPLATE_ID', this)
+    emailjs.sendForm('manoj_@123', 'Acchu_@123', this)
       .then(() => {
         status.textContent = "✅ Message sent successfully!";
         status.style.color = "lightgreen";
